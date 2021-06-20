@@ -6,6 +6,7 @@ nick_name: 阿金
 nick_name_vcard: curatorjin
 email: disciple_sneaker@163.com
 tags: default
+baseurl: "/blog"
 gems: [jekyll-feed, jekyll-seo-tag, jekyll-paginate, jekyll-tagging]
 paginate: 5
 paginate_path: "/page:num/"
