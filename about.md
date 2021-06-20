@@ -1,7 +1,8 @@
 ---
 layout: post
-title:  "阿金的简历"
-date:   2021-6-16 22:21:39 +0800
+title: "About"
+date: 2021-6-16 22:21:39 +0800
+header: true
 categories: Java
 ---
 
