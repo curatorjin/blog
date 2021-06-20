@@ -2,7 +2,7 @@
 layout: post
 title:  "基于FML的MinecraftMod制作学习笔记——开发环境的配置"
 date:   2018-8-27 11:05:44 +0800
-categories: unclassified
+tags: 未分类
 ---
 # 首先……
 - 以下为个人学习Minecraft1.7.10Mod开发时的流程和一些心得，其中涉及到了一些Java的知识，在此与大家分享
@@ -54,7 +54,7 @@ categories: unclassified
 		    } 
 		}
 		```
-	保存之后，在命令窗口中执行
+		保存之后，在命令窗口中执行
 		```
 		gradlew.bat idea genIntellijRuns
 		```
@@ -64,7 +64,7 @@ categories: unclassified
 	- 点击Run，可以看到Minecraft Client(客户端)和Minecraft Server(服务端)，选择客户端就可以进入游戏了~~
 
 ---
-		
+
 # 可能遇到的问题……
 >  主要是第二步中的gradlew.bat setupDecompWorkspace指令
 

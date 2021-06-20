@@ -1,2 +1,15 @@
 title: 阿金的博客
 remote_theme: curatorjin/Furendo
+description: _(:з」∠)_.
+signature: 早起赶画稿，熬夜写项目
+nick_name: 阿金
+nick_name_vcard: curatorjin
+email: disciple_sneaker@163.com
+tags: default
+paginate: 5
+paginate_path: "/page:num/"
+tag_page_layout: tag_page
+tag_page_dir: tag
+friends:
+    - name: Neei的笔记库
+      link: https://www.yuque.com/aaneeini?tab=books    

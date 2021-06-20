@@ -2,7 +2,7 @@
 layout: post
 title:  "Java反射机制"
 date:   2018-8-27 19:01:50 +0800
-categories: standard
+tags: Java
 ---
 # 反射的概念
 - 一种**动态获取信息和调用对象方法**的机制

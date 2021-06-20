@@ -2,7 +2,7 @@
 layout: post
 title:  "接口"
 date:   2019-08-02 21:23:00 +0800
-categories: standard
+tags: Java
 ---
 
 # 接口的概述

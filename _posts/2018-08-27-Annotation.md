@@ -2,7 +2,7 @@
 layout: post
 title:  "注解"
 date:   2018-08-27 00:48:00 +0800
-categories: standard
+tags: Java
 ---
 # 注解的概念
 - 概念

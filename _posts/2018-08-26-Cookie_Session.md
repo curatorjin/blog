@@ -2,7 +2,7 @@
 layout: post
 title:  "Cookie&Session"
 date:   2018-08-26 20:08:33 +0800
-categories: web
+tags: Web
 ---
 # Cookie
 ### 会话技术
