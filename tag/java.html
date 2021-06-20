@@ -1,0 +1,2423 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<link rel="shortcut icon" href="//favicon.ico" type="image/x-icon" />
+<link rel="stylesheet"
+    href="/assets/css/style.css?v=">
+<script
+    src="/assets/scripts/jquery-1.11.2.min.js?v="></script>
+<script
+    src="/assets/scripts/function.js?v="></script>
+</head>
+<body><header role="banner">
+
+	<div class="site-header">
+		<div id="header-bar"><div class="site-title" style="font-size: 3em;margin-bottom: 20px; margin-top: 20px">
+					<a rel="author" href=/ class="button">SiteTitle</a>
+			</div><div class="site-nav" style="margin-bottom: 20px;"><a class="page-link button" href="/about.html">
+							    About
+							</a></div></div>
+	</div>
+</header>
+<div class="container"><div class="left-bar">
+	<div id="self-info"
+		style="display: flex; flex-direction: column; margin-top: 100px; padding: 10px; border-radius: 4px;">
+		<div id="my-logo"
+			style="display: flex; flex-direction: column; align-items: center">
+			<img src="//assets/images/logo.png" />
+		</div>
+		<div style="padding: 30px 20px 0px 20px">
+			<div style="font-size: 25px; font-weight: bold;">your nick name</div>
+			<div style="font-size: 20px; font-weight: 300;">your nick name vcard.</div>
+		</div>
+		<div style="padding: 30px 20px 0px 20px">
+		<div>your signature.</div>
+		<div style="font-size: 15px; margin-top:20px">
+			<span style="margin-top: 3px"> <svg viewBox="0 -5 20 20"
+					version="1.1" width="16" height="16" aria-hidden="true">
+					<path fill-rule="evenodd"
+						d="M1.75 2A1.75 1.75 0 000 3.75v.736a.75.75 0 000 .027v7.737C0 13.216.784 14 1.75 14h12.5A1.75 1.75 0 0016 12.25v-8.5A1.75 1.75 0 0014.25 2H1.75zM14.5 4.07v-.32a.25.25 0 00-.25-.25H1.75a.25.25 0 00-.25.25v.32L8 7.88l6.5-3.81zm-13 1.74v6.441c0 .138.112.25.25.25h12.5a.25.25 0 00.25-.25V5.809L8.38 9.397a.75.75 0 01-.76 0L1.5 5.809z"></path></svg>
+			</span>
+			<a href="mailto:your email address">your email address</a></div>
+		</div>
+	</div>
+</div>
+<div class="content">
+	        <div class="post-list-view">
+		        <div class="post-list">
+		            <h2>Java标签下的文章：</h2>
+		            
+		            <div class="post-item">
+	                    <h2>
+	                        <a class="post-link" href="/2019/08/02/Thread.html"> Java多线程 </a>
+	                    </h2>
+	                    <li><span class="post-meta">Aug 2, 2019</span>
+	                    </li>
+	                    <li>
+	                        <span class="post-excerpt">多线程的概述
+
+  进程
+    
+      进程是处于运行过程中的程序
+    
+  
+  线程
+    
+      线程是进程中的一个执行单元
+    
+  
+  CPU的运作
+    
+      CPU运作时，会在当前的线程中高速随机切换执行，由于其切换的速度非常快，会让人误认为线程是同时执行的
+    
+  
+
+
+
+多线程的实现方式
+
+  实现方式1
+    
+      创建一个类继承Thread
+      重写Thread的run方法，将该线程要执行的内容写在run方法中
+      创建这个类的对象，调用他的start方法开启线程
+  ```java
+  class MyThread extends Thread{                  //创建Thread的子类
+ @Override
+ public void run(){
+     System.out.println(“线程启动”);         //重写Thread的run方法
+ }
+  }
+    
+
+    public class Test{
+      public static void main(String[] args){
+          MyThread mt = new MyThread();           //创建MyThread类的对象
+          mt.start();                               //调用对象的start方法
+      }
+  }
+  ```
+  
+  实现方式2
+    
+      创建一个类实现Runnable接口
+      创建该类的对象
+      创建Thread类的对象，以Runnable的子类当做参数
+      调用Thread对象的start方法
+  ```java
+  class MyRunnable implements Runnable{           //创建实现Runnable接口的子类
+ public void run(){
+     System.out.println(“线程启动”);         //实现接口的run方法
+ }
+  }
+    
+
+    public class Test{
+      public static void main(String[] args){
+          MyRunnable mr = new MyRunnable();       //创建MyRunnable类的对象
+          Thread t = new Thread(mr);              //创建Thread的对象并以mr作为参数
+          t.start();                              //调用线程对象的start方法
+      }
+  }
+  ```
+  
+
+
+
+Thread 类的方法
+
+  构造方法
+    Thread();                               //分配新的Thread对象
+Thread(Runnable target);                //分配新的Thread对象
+Thread(Runnable target, String name)    //分配新的Thread对象
+    
+  
+  常用方法
+    void setName(String name);              //将线程名设为name
+String getName();                       //获取线程名
+static Thread currentThread();          //获取当前线程名
+    
+  
+
+
+
+多线程的问题
+
+  多个线程同时操作共享数据的时候，就容易出现线程的安全问题
+
+
+
+使用同步代码块解决多线程案例中出现的问题
+
+  使用Synchronized同步代码块
+      synchronized(锁对象){
+      需要同步的代码;
+  }
+    
+    
+      锁对象
+        
+          锁对象是任意的引用数据类型的对象
+          锁对象在线程运行时会有其被锁定的状态，但这个状态无法在外部被观察或引用到
+        
+      
+    
+  
+  同步
+    
+      如果几个线程使用的是同一个锁对象，那么这几个线程之间就是同步的
+    
+  
+  同步方法
+    
+      如果一个方法里面所有的代码都被同步代码块括起来了，就可以把这个方法定义为同步方法
+      非静态的同步方法锁对象：this
+      静态的同步方法锁对象：当前类的字节码对象(Class)
+    
+  
+
+
+
+死锁和线程的生命周期
+
+  死锁
+    
+      出现原因
+        
+          线程中的同步代码块的嵌套，导致了多个线程同时等待其他线程释放资源的情况
+          根本原因在于同步代码块的嵌套形成了首尾相接的情况：一个嵌套结构的外层是另一个嵌套结构的内层
+        
+      
+      解决方法
+        
+          尽量不要让同步代码块去嵌套
+        
+      
+    
+  
+  线程的生命周期
+    
+      新建
+        
+          不具有执行资格
+          不具有执行权
+        
+      
+      就绪
+        
+          具有执行资格
+          不具有执行权
+        
+      
+      运行
+        
+          具有执行资格
+          具有执行权
+        
+      
+      阻塞
+        
+          不具有执行资格
+          不具有执行权
+        
+      
+      死亡
+    
+  
+
+</span>
+	                    </li>
+	                </div>
+					
+		            <div class="post-item">
+	                    <h2>
+	                        <a class="post-link" href="/2019/08/02/Package.html"> Package-包 </a>
+	                    </h2>
+	                    <li><span class="post-meta">Aug 2, 2019</span>
+	                    </li>
+	                    <li>
+	                        <span class="post-excerpt">包的作用和特点
+
+  包可以有多层
+  包的定义需要在第一行有效代码中(注释不算)
+  不同包之间的文件名可以相同
+
+
+
+不同包之间的互相访问
+
+  只能访问不同包之间的类
+  导入包名
+    
+      使用类的全名(包名.类名)
+      导入的是包下的类
+    
+  
+  关键字：import
+    
+      使用import将包中的某个或某些类导入,相当于在当前的包中创建了导入的类
+    
+  
+  通配符：*
+    
+      表示导入该包下所有的类
+    
+  
+
+
+
+权限修饰符
+
+  public
+    
+      公共
+      可以修饰类、方法和成员变量
+      被public修饰的类可以被其所在的包下的其他类访问
+        
+          一个Java文件中只能有一个被public修饰的类，且类名要与文件名相同
+        
+      
+    
+  
+  protected
+    
+      受保护的
+      可以修饰类和方法和成员变量
+      被protected修饰的类不能被不同包中的类访问，但可以被不同包中的子类访问
+    
+  
+  default
+    
+      默认
+      可以修饰类、方法和成员变量
+      不写任何其他的权限修饰符时即为default修饰符
+      被default修饰的类只能被同一个包中的其他内容访问
+    
+  
+  private
+    
+      私有
+      可以修饰方法和成员变量
+      被private修饰的成员只能被同一个类中的其他成员访问
+    
+  
+
+
+
+权限修饰符总结
+| public | protected | default | private
+—      |   —  |   —     |   —   |   —
+同一个类中 | √ | √ | √ | √
+同一个包中的不同类 | √ | √ | √| 
+不同包中的子类 | √ | √ |  |
+不同包中的类 | √ |  |  |
+
+
+内部类的概述
+
+  内部类是类，同样是用来描述事物的
+  内部类的分类
+    
+      成员内部类
+      局部内部类
+      匿名内部类
+    
+  
+  内部类不能用普通方式访问，只能通过其外部来访问，而内部类可以自由的访问外部类的成员，无论是否是私有成员
+
+
+
+成员内部类的概述和使用
+
+  当事物中还有具体的事物时，就可以使用内部类来描述
+  定义在类中方法外
+  创建对象：
+    外部类名.内部类名 变量名 = new 外部类对象.new 内部类对象
+Outer.Inner inner = new Outer().new Inner();        //此处的new Outer()可以看做是一个匿名对象
+    
+  
+
+
+
+成员内部类的修饰符
+
+  如果成员内部类使用static修饰，那么该内部类会随着外部类的加载而加载，因此创建对象的方式可以为：
+    外部类名.内部类名 变量名 = new 外部类名.内部类对象
+Outer.Inner inner = new Outer.Inner();
+    
+  
+
+
+
+局部内部类的概述和使用
+
+  定义在方法内部的类
+  只能在局部方法中创建这个对象，一旦该方法弹栈，外部就访问不到这个局部类了
+    
+      (Jdk1.7)局部内部类访问局部变量必须使用final修饰
+        
+          调用方法时，局部变量如果没有用final修饰，那么当这个方法弹栈之后这个变量就会消失，此时内部类就无法再访问这个变量了，用final修饰后，变量的生命周期会等同于外部类的生命周期，即使方法弹栈，此变量也会依然存在，内部类才可以访问到。(Jdk1.8中已无需用final修饰)
+        
+      
+    
+  
+
+
+
+  局部内部类的生命周期应小于等于他所在的方法，当方法弹栈之后，内部类也应消失，即使在方法体中调用局部内部类的方法去访问局部变量，那么内部类的方法应该是在外部方法弹栈之前加载进入栈内存。也就是说，在内部类的方法弹栈之前，外部的方法是不会弹栈的，因此不用final修饰也是合理的。
+
+
+
+匿名内部类的概述和格式
+
+  类似于匿名对象，匿名内部类可以看作是一个没有名字的局部内部类
+  定义在方法体中
+  必须在定义匿名内部类的时候创建他的对象
+  格式：
+      new 类/接口(){
+      (创建继承这个类的子类对象)可以对父类的方法重写
+      (创建了实现接口的子类对象)必须对接口的方法进行实现
+  };
+    
+  
+  原理：创建了继承这个类或是实现这个接口的子类对象
+
+
+
+匿名内部类的应用场景
+
+  通常在使用方法是接口类型参数，并该接口中的方法不超过三个时，可以将匿名内部类作为参数传递。
+  简化书写,如果阅读实在费劲的话,可以写有名字的内部类
+
+
+
+</span>
+	                    </li>
+	                </div>
+					
+		            <div class="post-item">
+	                    <h2>
+	                        <a class="post-link" href="/2019/08/02/Object.html"> Object对象 </a>
+	                    </h2>
+	                    <li><span class="post-meta">Aug 2, 2019</span>
+	                    </li>
+	                    <li>
+	                        <span class="post-excerpt">Object的toString方法
+
+  我们在打印一个类的时候，默认调用其父类Object的toString方法，输出其字节码对象和哈希码
+    public String toString() {
+  return getClass().getName() + "@" + Integer.toHexString(hashCode());
+}
+    
+  
+  如果该类重写了其父类的toString方法，则按照其重写的输出
+    System.out.println(Object);                 
+System.out.println(Object.toString());      //这两个语句在子类没有重写toString方法的时候是等效的
+    
+  
+  本质上来说，是由于System.out是一个PrintStream，其println方法中的定义：
+    public void println(Object x) {
+  String s = String.valueOf(x);
+  synchronized (this) {
+      print(s);
+      newLine();
+  }
+}
+    
+  
+  而对应的String类的 valueOf() 方法中：
+    public static String valueOf(Object obj) {
+  return (obj == null) ? "null" : obj.toString();
+}
+    
+  
+  所以输出时总会调用对象的toString方法
+
+
+
+获取字节码对象的方式
+
+  通过其父类定义的getClass方法来获取其字节码：
+    Object o = new Object();
+Class c = o.getClass();
+    
+  
+  通过类名调用属性class来获取：
+    Class c = Student.class();      //此处Student是一个类
+    
+  
+  通过Class类的静态方法 forName() 来获取：
+    Class c = Class.forName("类名");        //需要抛出ClassNotFoundException异常
+    
+  
+
+
+
+Object的equals方法
+public boolean equals(Object obj) {
+    return (this == obj);
+}
+
+
+  从Object类中的定义看出, equals 方法默认比较两个引用对象的地址值是否一致
+  其他类由于是Object类的子类，可以重写其父类的equals方法而设定其本身的“相等”的含义
+
+
+
+System类的概述
+
+  系统类，由于其构造方法被私有化，故不能创建对象，可以看作一个工具类
+
+
+
+System类的arraycopy方法测试
+
+  这是一个native方法
+
+
+public static native void arraycopy(Object src,  int  srcPos,Object dest, int destPos,int length);
+//                                   目标数组      复制起点      目标数组      粘贴起点   粘贴个数
+
+
+  调用这个方法后直接对Object dest进行修改
+
+
+
+System类的其他方法
+
+  currentTimeMillis() 方法
+    
+      获取当前时间的毫秒值，该毫秒值以1970年1月1日0时0分为起点
+      由于时差，调用时各时区可能会得到不同的结果
+    
+  
+  exit(int status) 方法
+    
+      其中status表示退出状态，0表示正常退出，非0表示异常退出
+        
+          应用：异常码
+        
+      
+    
+  
+
+
+
+Date类的概述和构造
+
+  快要过时的一个类，用于表示时间
+  时间的起点为1970年1月1日0时0分，通常为毫秒值
+
+
+Date类的常用方法
+
+  构造方法
+    Date d = new Date();    //此时d引用所指向的对象是代表d被创建时的系统时间，仍然是long类型的毫秒值，以1970年1月1日0时0分为起点
+  
+Date d1 = new Date(long time);  //此时d引用所指向的对象仍然代表一个时间，为以1970年1月1日0时0分为起点之后time毫秒的时间点
+    
+  
+  getTime() 方法
+    Date d = new Date();
+long time = d.getTime();    //返回一个long类型的值，为Date对象所代表的时间
+    
+  
+  setTime() 方法
+    Date d = new Date();
+d.setTime(long time);   //该方法无返回值，需提供一个long类型的参数，将Date对象所代表的时间设置为该值
+    
+  
+
+
+
+SimpleDateFormat的概述
+
+  抽象类DateFormat的子类
+
+
+
+Calendar的概述和测试
+
+  用于替换过时类Date
+  Calender是抽象类，无法创建对象
+    Calender c = Calender.getInstence();   //根据时区创建一个Calendar的子类对象，用Calendar的引用接收(多态)
+    
+    Calendar类的常用方法
+  
+  get(Calender.YEAR) 方法
+    
+      返回一个int值，该值在Calender对象中代表年份，月份等其他信息由其他的字段对应，也都有相应的get方法
+      在获取或设置月份时，Calendar.MONTH所对应的字段一月是从0开始的，也就是说这个字段的取值范围是0 ~ 11而不是1 ~ 12
+    
+  
+  set(int field, int value);
+    
+      无返回值，将Calendar对象中对应的字段改为value，起到设置Calendar表示的时间的作用
+    
+  
+  add(int field, int amount);
+    
+      无返回值，将Calendar对象中对应的字段增加amount的值，起到修改Calendar表示的时间的作用
+      该方法的作用与set(int field,get(field)+amount) 相同
+      如果amount的值为负，则表示将其对应的时间回退
+    
+  
+
+
+
+包装类的概述和基本使用
+
+  对于基本数据类型，Java对其都有相应的包装类，也就是说每一个基本数据类型都可以对应一个类，从而更方便我们对基本数据类型进行一些操作
+    //以Integer为例：
+//将int转换为String类型：
+      String s = 1+"";                        //利用字符串加减的特性
+      String s1 = Integer.toString(1);        //调用Integer类的方法
+//将String转换为int类型：
+      int i = Integer.parseInt("123");            //调用Integer类的方法
+    
+  
+
+
+自动装箱和拆箱
+
+  自动装箱
+    
+      将基本数据类型转换为其对应的包装类
+        Integer i = 10;
+        
+      
+    
+  
+  自动拆箱
+    
+      将基本数据类型对应包装类的对象转换为基本数据类型
+        int i = 10;
+Integer i1 = i + 10;
+        
+      
+    
+  
+
+
+
+正则表达式的概述
+
+  就是字符串， 但这个字符串有一定的规则
+    
+      规则：
+        y：就代表y
+\\      
+[abc] :a或b或c
+[123] :1或2或3
+[a-z] : 是小写字母吗
+[a-zA-Z]: 是字母吗
+[A-Z]:是大写字母吗
+  
+. :任意的字符
+\\. : .字符
+\\d : digit [0-9]
+\\D :
+\\w : word 符合 [a-zA-Z_0-9]
+\\W:
+\\s:  space
+\\S:
+  
+str = str.replace(/[\s\.]/g,"");
+  
+\\d{5}:
+.{5-10}
+\\w{5,}
+[123]*    *表示零次或多次
+[abc]+    +表示1次或多次
+        
+      
+    
+  
+
+</span>
+	                    </li>
+	                </div>
+					
+		            <div class="post-item">
+	                    <h2>
+	                        <a class="post-link" href="/2019/08/02/MapSet.html"> Map与Set </a>
+	                    </h2>
+	                    <li><span class="post-meta">Aug 2, 2019</span>
+	                    </li>
+	                    <li>
+	                        <span class="post-excerpt">Set接口的特点
+
+  存入集合的顺序与取出集合的顺序有可能不一致
+  没有索引
+  存入集合的元素没有重复
+
+
+
+HashSet存储自定义对象并遍历
+public class TestForHashSet{
+    public static void main(String[] args){
+        HashSet&lt;Student&gt; hs = new HashSet&lt;&gt;();                      //创建HashSet集合
+        Student s1 = new Student();
+        Student s2 = new Student();
+        Student s3 = new Student();
+        Student s4 = new Student();
+        Student s5 = new Student();                                 //创建学生类对象*5
+        hs.add(s1);hs.add(s2);hs.add(s3);hs.add(s4);hs.add(s5);     //将学生对象存入集合中
+        for(Student s:hs){
+            System.out println(s);                                  //由于HashSet集合没有索引，所以此处用增强for循环来遍历
+        }
+    }
+}
+
+
+
+HashSet自动去重原理
+
+  add()方法的原理为：
+    
+      HashSet添加元素时，会先拿着这个元素的HashCode值和已经添加的元素的HashCode值比较，如果都不相同，直接添加，如果有相同的，就让这个元素和HashCode值相同的那些元素依次比较(调用对象的equals方法)看是否相同，如果比较一遍都不同，则添加元素并返回true，如果比较式时发现有相同的，直接不添加，并返回false
+    
+  
+  由于只是比较对象的HashCode和调用equals方法来确认对象是否重复，所以会出现无法实现预期中的去重效果的情况
+  源码：
+    public boolean add(E e) {
+  return map.put(e, PRESENT)==null;
+}
+    
+  
+
+
+
+实现HashSet存储自定义对象去重
+
+  由于HashSet在存入元素时会自行进行一次判断来去除重复对象，因只需重写hashCode和equals方法重新定义对象相等的含义即可实现自定义对象去重
+
+
+
+Collections工具类
+
+  方法
+```java
+    
+      int binarySearch(List list,E e)                   //二分法查找元素
+      void sort(List list)                              //排序
+      void copy(List dest,List src                      //复制集合
+      void reverse(List list)                           //翻转集合
+      void shuffle(List list)                           //打乱集合
+      void swap(List list, int index1, int index2)      //调换集合中索引为index1和index2的元素的位置
+      void fill(List list, Object obj)                  //以元素obj填充list集合
+```
+    
+  
+
+
+
+Map接口的概述
+
+  Map中的集合被称为双列集合
+  元素成对存在，每个元素由键与值两部分组成，通过键可以找到其所对应的值
+  Map中的集合不能包含重复的键，但是值可以重复(类似数学中函数的映射关系)，每个键只能对应一个唯一的值
+
+
+
+Map的功能概述
+Map&lt;K key, V value&gt;                     //Map是一个接口，只能创建其已经实现了的子类对象
+
+V put(K key,V value)                    //以键=值的方式存入Map集合，并将值返回
+V get(Object key)                       //根据键值获取其所对应的值，如果Map集合中不存在该键值则返回null
+int size()                              //返回Map中键值对的个数
+
+boolean containsKey(Object key)         //判断Map集合中是否包含键值为key的键值对
+boolean containsValue(Object value)     //判断Map集合中是否包含值为value的键值对
+boolean isEmpty()                       //判断Map集合中是否没有任何键值对
+
+void clear()                            //清空Map集合中所有的键值对
+V remove(Object key)                    //根据键值删除Map中的键值对，并将键值对应的值返回
+
+Set&lt;Map.Entry&lt;K,V&gt;&gt; entrySet()          //将Map中的每个键值对封装到一个个的Entry对象中，再将所有的Entry对象存储到一个Set集合中并返回此Set集合
+Set&lt;K&gt; keySet()                         //将Map中所有的键值封装到一个Set集合中并返回此Set集合
+Collection&lt;V&gt; values()                  //将集合中所有的value的值的集合返回
+
+
+
+Map的第一种遍历方式
+
+  拿到所有的键值，再由键值去Map中集合获取其对应的值
+    Set&lt;Key&gt; keyset = map.keySet();
+for(Key key:keyset){
+  System.out.println(keyset+" = "+map.get(keyset);
+}
+    
+    
+    Map的第二种遍历方式
+  
+  先获取所有的键值对对象，再通过键值对对象获取其中的键值和值
+    Set&lt;Map.Entry&lt;Key,Value&gt;&gt; entrys = map.entrySet();
+for(Map.Entry&lt;Key,Value&gt; entry:entrys){
+  Key key = entry.getKey();
+  Value value = entry.getValue();
+  System.out.println(key+" = "+value);
+}
+    
+    
+    HashMap存储数据并遍历时的注意事项
+  
+  由于HashMap的左列为HashSet数据结构，当以对象作为键值时，因为HashSet的自动去重功能使用的是对象的哈希值和调用equals方法，所以也可能会出现左列键值“重复”的现象，此时可以重写对象的hashCode和equals方法来自定义对象“重复”的含义，达到键值不重复的“目的”
+
+
+
+可变参数
+
+  写一个方法时，当参数的个数不确定时，可以用可变参数来处理
+  格式(以int类型的参数为例)：
+    public void method(int...a){
+  方法体;
+}
+    
+  
+  Java可以把多个参数转换成数组
+  可变参数的本身就是一个长度可变的数组
+  注意事项：
+    
+      在可变参数之前可以增加参数，但可变参数必须是参数列表中的最后一个参数
+      可变参数传入时的个数为0或任意多个
+    
+  
+
+
+
+</span>
+	                    </li>
+	                </div>
+					
+		            <div class="post-item">
+	                    <h2>
+	                        <a class="post-link" href="/2019/08/02/List.html"> 集合 </a>
+	                    </h2>
+	                    <li><span class="post-meta">Aug 2, 2019</span>
+	                    </li>
+	                    <li>
+	                        <span class="post-excerpt">集合的体系结构
+
+  由于不同的数据结构(数据的组织、存储方式)，Java为我们提供了不同的集合，但不同的集合的功能都是相似的，都实现了同一个Collection接口
+    graph LR
+集合数据结构--&gt;单列集合Collection
+集合数据结构--&gt;双列集合Map
+单列集合Collection--&gt;List
+List--&gt;数组结构ArrayList
+List--&gt;链表结构LinkedList
+单列集合Collection--&gt;Set
+Set--&gt;哈希表结构HashSet
+哈希表结构HashSet--&gt;LinkedHashSet
+Set--&gt;二叉树结构TreeSet
+双列集合Map--&gt;左列哈希表结构HashMap
+左列哈希表结构HashMap--&gt;LinkedHashMap
+双列集合Map--&gt;左列二叉树结构TreeMap
+
+  
+  分析体系结构从最顶层开始，其包含了所有的共性
+  使用时从最底层开始，其即为具体的实现
+
+
+
+Collection中的常用功能
+
+  boolean add(Object o): 向集合中添加元素
+    
+      由于List允许其中的元素重复，所以调用时总是会返回true
+      同样的，在Set中不允许元素重复，所以调用时未必会返回true
+    
+  
+  void clear():清空集合中所有元素
+  boolean contains(Object o):判断集合中是否包含某个元素
+  boolean isEmpty():判断集合中的元素是否为空
+  boolean remove(Object o):根据元素的内容来删除某个元素
+  int size():获取集合的长度
+  Object[] toArray():能够将集合转换成数组并把集合中的元素存储到数组中
+
+
+
+迭代器的概述和测试
+
+  集合的遍历方式
+    
+      调用 toArray() 方法，可以把集合转换成数组，然后遍历数组即可
+      调用 iterator() 方法，返回一个迭代器对象
+    
+  
+  Iterator：迭代器，可以用于遍历集合
+    
+      Iterator是一个==接口==，无法直接创建对象，需要通过集合的方法来创建
+      Iterator的常用方法：
+          Object next()                                               //返回下一个元素
+  boolean hasNext()                                           //判断是否有下一个元素可以获取
+        
+  //使用案例：
+  public class IteratorDemo{
+      public static void main(String[] args){
+          Collection&lt;Integer&gt; list = new ArrayList&lt;&gt;();
+          list.add(1);list.add(14);list.add(2);list.add(12);  //创建测试用集合
+        
+          Iterator it = list.iterator();                      //创建迭代器对象
+          while(it.hasNext()){
+              System.out.println(list.next();                 //使用迭代器遍历集合
+          }
+      }
+  }
+        
+        
+          当迭代器中没有下一个元素可以获取，即hasNext()的值为false时，再调用next()方法会出现NoSuchElementException异常
+          注意：由于Iterator的next()方法会将迭代器的光标向后移动一位，所以==遍历时的每次循环中只能调用一次next方法==
+        
+      
+    
+  
+
+
+
+并发修改异常
+
+  java.util.ConcurrentModificationException
+  迭代器依赖于集合，相当集合的一个副本，迭代器在操作时如果发现与集合长度不一样，则会抛出异常
+  解决方案
+    
+      在使用迭代器进行遍历时，使用迭代器本身去修改，迭代器会自行同步集合
+    
+  
+  用迭代器去修改集合
+    
+      删除
+        
+          Collection可以实现，调用remove()方法
+        
+      
+      添加
+        
+          只有List集合才可以
+            
+              调用ListIterator迭代器(List体系特有的迭代器)
+              ListIterator中既有remove()方法，也有add()方法
+            
+          
+        
+      
+    
+  
+
+
+
+泛型&amp;增强for循环
+
+  泛型
+    
+      广泛的类型，需要创建对象或者调用方法的时候明确
+      优点
+        
+          把运行期的错误提前到了编译期
+          去除了程序中的warning
+          不需要强制类型转换
+        
+      
+    
+  
+  增强for循环
+      for(数据类型 变量名:集合或数组){
+      语句体
+  }
+    
+    
+      只要是Iterable的子类都可以用增强for循环来遍历
+    
+  
+
+
+
+常见数据结构(数组)
+
+  特点：查询快，增删慢
+  举例：ArrayList，其底层为数组结构
+
+
+
+常见数据结构(链表)
+
+  特点：查询慢，增删快
+  举例：LinkedList，其底层为链表结构
+
+
+
+常见数据结构(栈&amp;队列)
+
+  栈
+    
+      特点：先进后出
+      举例：Stack，其底层为栈的数据结构
+    
+  
+  队列
+    
+      特点：先进先出
+      举例：无
+    
+  
+
+
+
+List的特点和特有功能
+
+  特点
+    
+      有序
+      可以重复
+      有索引
+        
+          链表的索引是“假索引”，底层操作时仍然是遍历查找
+        
+      
+    
+  
+  增删改查
+    void add(int index, E e);   //在指定索引位置插入元素e
+E remove(int index);        //移除指定索引位置的元素并将其返回
+E set(int index, E e);      //将指定索引处的元素改为元素e,并将覆盖的元素返回
+E get(int index);           //返回指定索引处的元素
+    
+  
+  功能性的方法，离不开增删改查
+    int indexOf(Object o);          //返回此列表中第一次出现的指定元素的索引；如果此列表不包含该元素，则返回-1
+boolean contains(Object o);     //如果列表包含指定的元素，则返回 true,否则为false
+    
+  
+
+
+
+List的子类概述和LinkedList的特有功能
+
+  LinkedList：
+    
+      特有方法都是和首尾有关的
+          void addFirst(E e);     //向链表的头部添加元素
+  void addLast(E e);      //向链表的尾部添加元素
+  E getFirst();           //获取链头的元素,不删除元素
+  E getLast();            //获取链尾的元素,不删除元素
+  E removeFirst();        //返回链头的元素并删除链头的元素
+  E removeLast();         //返回链尾的元素并删除链尾的元素
+        
+      
+    
+  
+
+
+
+</span>
+	                    </li>
+	                </div>
+					
+		            <div class="post-item">
+	                    <h2>
+	                        <a class="post-link" href="/2019/08/02/IO&File.html"> 文件与IO </a>
+	                    </h2>
+	                    <li><span class="post-meta">Aug 2, 2019</span>
+	                    </li>
+	                    <li>
+	                        <span class="post-excerpt">标准输入输出流概述
+
+  System. in
+    
+      标准字节输入流，用来读取从键盘录入的数据
+    
+  
+  System.out
+    
+      标准字节输出流，用来将数据输出到控制台
+    
+  
+  System.err
+    
+      标准错误流，属于字节输出流，用来将数据输出到控制台，字体为红，表示错误
+    
+  
+  标准输入输出错误流，由于都是用static修饰的，全局只有三个，只要某个地方关闭了，其他地方也就用不了了
+
+
+
+OutputStreamWriter的概述和使用
+
+  输出转换流
+    
+      将字节输出流转换为字符输出流
+          OutputStreamWriter(OutputStream out);       //将字节输出流out转换为字符输出流
+        
+      
+    
+  
+
+
+
+InputStreamReader的概述和使用
+
+  输入转换流
+    
+      将字节输入流转换为字符输入流
+          InputStreamReader(InputStream in);       //将字节输入流in转换为字符输入流
+        
+      
+    
+  
+
+
+
+打印流的概述
+
+  PrintWriter
+    
+      字符打印流，是Writer的子类
+    
+  
+  PrintStream
+    
+      字节打印流，是OutputStream的子类
+    
+  
+  方法
+    void print(String str);     //输出任意类型的数据
+void println(String str);   //输出任意类型的数据，然后自动换行
+    
+  
+  注意事项
+    
+      打印流都是输出流，只能输出不能输入
+      打印流是可以直接操作文件的流
+          FileWriter fw = new FileWriter("a.txt");
+  PrintWriter pw = new PrintWriter("a.txt");
+        
+      
+      包装流
+          BufferedWriter br = new BufferedWriter(new FileWriter("a.txt");
+        
+      
+      PrintWriter的构造方法
+          PrintWriter(Writer out)         //包装
+PrintWriter(OutputStream out)   //起到转换的作用
+        
+      
+      打印流也是一个包装流
+    
+  
+
+
+
+打印流特有功能
+
+  特有功能
+    
+      自动刷新
+        
+          flush();
+        
+      
+      自动换行
+        
+          newline();
+        
+      
+    
+  
+  注意事项
+    
+      构造方法中的开关
+        
+          只有打开了构造方法里的开关才能有自动刷新和自动换行的功能
+              PrintStream ps = new PrintStream(new FileOutputStream("a.txt"),true);
+            
+          
+        
+      
+    
+  
+
+
+
+使用打印流复制文本文件
+public class CopyFile {
+    public static void main(String[] args) throws IOException{
+        PrintWriter pw = new PrintWriter(new FileWriter("a.txt"),true);
+        BufferedReader br = new BufferedReader(new FileReader("b.txt"));
+        String line;
+        while((line= br.readLine())!=null){
+            pw.println(line);
+        }
+    }
+}
+
+
+  println() =&gt; write() –&gt; newline() –&gt; flush()
+
+
+
+对象操作流的概述
+
+  可以对对象进行文件的读写操作
+    
+      ObjectOutputStream
+        
+          把对象写出到文件中，这个过程叫序列化
+        
+      
+      ObjectInputStream
+        
+          把对象读入到内存中，这个过程叫反序列化
+        
+      
+    
+  
+
+
+
+使用对象操作流读写对象
+
+  对象操作流所读写的对象必须实现了Serializables接口
+  Serializables接口下没有方法，这样的接口成为标记接口
+
+
+
+解决对象输入流读取对象出现异常的问题
+
+  使用对象输入流读取对象时，读到文件的末尾再往下读时，就会报出异常
+  解决方法
+    
+      将要输出到文件的n个对象封装到一个集合中，读取的时候只读取一次就可以了
+      使用死循环+try catch结构的方法规避异常
+          try {
+ while (true) {
+     Object obj = ois.readObject();
+     System.out.println(obj);
+ }
+  } catch(EOFException e) {
+ System.out.println("读到了文件尾");
+  }
+        
+      
+    
+  
+
+
+
+解决对实现序列化接口出现的警告问题
+
+  问题：将一个对象输出到文件中之后，这个对象所对应的类发生了改变，再读入这个对象的时候就会报错
+  出错原因
+    
+      当一个类实现了Serializables接口时，会根据其内部的成员变量以及属性自动生成一个序列化的版本号，这个版本号是随着其内部的变化而变化的，所以当这个类发生改变时，其版本号也会发生改变，再读取时由于读取对象的版本号与当前已经发生改变的类的版本号不一致，故报出异常
+    
+  
+  解决方法：
+    
+      在这个类中固定序列化版本号
+          private static final long serialVersionUID = 6361890890437825953L;
+        
+      
+    
+  
+
+
+
+Properties的概述
+
+  Properties是一双列集合，线程安全，效率低下
+  用于读写properties配置文件
+
+
+
+Properties和IO流结合的功能
+void list(PrintWriter p);                   //将其中的内容通过p进行输出
+void store(Writer w, String comments);      //将其中的内容输出到文件
+void load(Reader r);                        //读取文件中的内容到内存
+
+
+
+编码表的概述
+
+  ASCII编码
+    
+      基于拉丁字母的编码系统
+    
+  
+  GBK
+    
+      中文编码表
+    
+  
+  Unicode
+    
+      所有的字符都占两个字节
+    
+  
+  UTF-8
+    
+      长度可变的码表
+    
+  
+  ANSI
+    
+      本地编码表
+    
+  
+
+
+
+Java中字符串的编码
+
+  默认使用ANSI(GBK)
+
+
+InputStreamReader(InputStream in, CharsetDecoder dec)            //创建使用给定字符集解码器的 InputStreamReader
+
+OutputStreamWriter(OutputStream out, CharsetEncoder enc)         //创建使用给定字符集编码器的 OutputStreamWriter
+
+
+
+字符流中的编码
+
+  FileWriter的默认缓冲区编码是系统默认编码
+    
+      保证不乱码，就编码一致
+    
+  
+
+
+
+
+File类的概述和常用功能
+
+  File是用来描述系统的文件和文件夹的
+  常用方法
+    //构造方法
+File(String path);                      //创建一个指向path路径的File对象
+File(String parent, String child);      //创建一个根据parent 抽象路径名和child路径名的File对象
+File(File parent, String child);        //创建一个指向根据parent路径名和child路径名的File对象
+    
+  
+
+
+
+File类的创建和删除功能
+boolean createNewFile();    //创建一个File对象所指向的对应文件，创建成功则返回true，失败则返回false
+boolean mkdir();            //创建一个File对象所指向的对应文件夹，创建成功则返回true，失败则返回false
+boolean mkdirs();           //创建此File对象的抽象路径名指定的目录，包括所有必需但不存在的父目录
+boolean delete();           //删除File对象所指向的文件或文件夹，但在删除文件夹时，文件夹内部不能包含子目录或文件
+
+
+
+File类的判断功能
+boolean exists();           //判断File对象所指向的文件或文件夹是否存在
+boolean isAbsolute();           //判断File对象所对应的路径是否为绝对路径
+boolean isDirectory();      //判断File对象所指向的是否为文件夹
+boolean isFile();           //判断File对象所指向的是否为文件
+boolean isHidden();         //判断File对象所指向的文件是否隐藏
+
+
+
+File类的获取功能和修改名字功能
+String getAbsolutePath();       //获取文件绝对路径名
+File getAbsoluteFile();         //获取当前文件的绝对路径名形式文件
+File getParentFile();           //获取此抽象路径名父目录的抽象路径名
+String getPath();               //将此抽象路径名转换为一个路径名字符串
+String getName();               //获取此文件的名称
+long lastModified();            //获取文件最后一次被修改的时间
+long length();                  //获取文件大小
+boolean setLastModified();      //设置最后修改时间
+boolean renameTo(File file);    //重命名文件
+
+
+File的重要获取功能
+String[] list();                //获取文件下所有文件的文件名数组
+File[] listFiles();             //获取文件夹下的所有文件
+static File[] listRoots();      //获取可用的文件系统根目录
+
+
+
+输出指定目录下的所有Java文件名(包含子目录)
+
+  递归的思想
+    
+      先获得指定目录下的文件
+      如果为目录，则进入继续查看
+      如果为文件，则判断是否为Java文件，如果是则输出
+    
+  
+
+
+
+删除指定的目录(包含子目录)
+
+  递归的思想
+    
+      先获得指定目录下的文件
+      如果为目录，则进入继续删除
+      如果为文件，则直接删除
+    
+  
+
+
+
+IO流的分类
+
+  按底层操作的数据来分
+    
+      字符流
+        
+          操作的是字符，有编码，有缓冲区
+          能够复制的文件只有“纯文本文件”(能用txt正常打开的文件)
+          字符输入流：实现的抽象类为Reader
+          字符输出流：实现的抽象类为Writer
+        
+      
+      字节流
+        
+          操作的是字节，是计算机的最小存储单元
+          能够操作复制所有的文件
+          字节输入流：实现的抽象类为InputStream
+          字节输出流：实现的抽象类为OutputStream
+        
+      
+    
+  
+
+
+
+
+字符流进行图片的复制
+
+  字符流进行文件复制
+    
+      字符流进行非纯文本文件的复制时，由于其操作的是字符而且有编码，当遇到无法转换为字符的编码时，就会发生文件的损坏，
+      
+        由于编码的减少，文件的总体也会变小
+        将指定目录(包含内容)复制到另一个目录中
+      
+    
+  
+  递归的思想
+    
+      先创建指定的目录
+      进入指定的目录获得文件
+      如果为目录则直接创建并进入继续复制
+      如果为文件则直接复制
+    
+  
+
+
+
+</span>
+	                    </li>
+	                </div>
+					
+		            <div class="post-item">
+	                    <h2>
+	                        <a class="post-link" href="/2019/08/02/Interface.html"> 接口 </a>
+	                    </h2>
+	                    <li><span class="post-meta">Aug 2, 2019</span>
+	                    </li>
+	                    <li>
+	                        <span class="post-excerpt">接口的概述
+
+  提供方法的规则，用以让其他的类去实现
+  比抽象类还要抽象，接口中只有常量和抽象方法
+
+
+
+接口的成员特点
+
+  成员变量
+    
+      只能是常量
+      只能用public static final修饰
+        
+          由于是接口，无法被实例化，如果其变量要有意义，必须要有足够大的权限(public)
+          由于接口没有方法体，所有如果有变量则必须是常量(final)
+          要使接口中的常量能被其他类的方法直接调用，则必须要加静态修饰符(static)
+        
+      
+    
+  
+  成员方法
+    
+      只能用public abstract修饰
+        
+          从接口的定义来看，其内部的方法必须是抽象方法(abstract)，如果不加修饰符则默认为abstract
+          接口的意义在于要让其他的类来实现其内部的方法，因此其内部方法的权限需要足够大以让其他类去接收(public)
+          不支持除public abstract以外的修饰符
+        
+      
+    
+  
+
+
+
+接口和类之间的各种关系
+
+  接口和接口
+    
+      继承关系  extends
+      多重继承&amp;多层继承
+    
+  
+  接口和类
+    
+      实现关系  implement
+      一个类如果要实现一个接口，则必须要重写其中所有的抽象方法
+      一个类可以实现多个接口
+    
+  
+  类和类
+    
+      继承关系  extends
+      单一继承&amp;多层继承
+    
+  
+
+
+
+接口的思想
+
+  如果说类是用来描述事物，以事物的属性标准来划分事物的，那么接口就可以看做是从行为属性上划分事物的特殊类
+  提供了方法的规则(行为标准)
+
+
+
+接口的优点
+
+  直接打破了类单一继承的局限
+  给其他的类以及接口提供了行为标准
+  降低了程序的耦合性，从而可以实现模块化开发
+
+
+
+接口与抽象类的区别
+
+  成员的区别
+    
+      抽象类中成员变量可以是变量也可以是常量而接口中的成员变量只能是常量
+      抽象类中可以有非抽象方法，而接口中的方法必须全部都是抽象方法
+    
+  
+  继承关系的区别
+    
+      抽象类是类，类只能单一继承
+      接口可以多重继承
+    
+  
+
+
+
+多态的概述和实现
+
+  父类引用指向子类对象
+      Animal a = new Cat();           //Cat是Animal的一个子类
+    
+  
+
+
+
+多态成员的特点
+
+  除了方法引用的是子类中重写过的(如果子类重写过)，其余的一律引用的是父类的成员
+
+
+
+多态中的向上转型和向下转型
+
+  当子类对象赋值给一个父类引用时，即为向上转型，多态本身就是一个向上转型的过程
+  对于一个使用了向上转型的子类对象，可以使用强制类型转换的格式使其转为子类引用，这个过程是向下转型
+  无论是向上转型还是向下转型，都是子类对象在其中进行变换
+  如果父类引用指向的是父类对象，是无法进行向下转型的
+  关键字instanceof
+    
+      用于判断一个引用是否为某个对象
+          Animal a = new Cat();
+  System.out.println(a instanceof Cat);       //输出true
+        
+      
+    
+  
+
+
+
+多态的优缺点
+
+  优点
+    
+      提高了代码的可维护性(本质是由继承所带来的)
+    
+  
+  缺点
+    
+      无法直接访问子类的成员
+    
+  
+
+
+
+</span>
+	                    </li>
+	                </div>
+					
+		            <div class="post-item">
+	                    <h2>
+	                        <a class="post-link" href="/2019/08/02/Exception.html"> 异常 </a>
+	                    </h2>
+	                    <li><span class="post-meta">Aug 2, 2019</span>
+	                    </li>
+	                    <li>
+	                        <span class="post-excerpt">异常的概述和体系结构
+
+  Java中使用Exception类来描述异常
+    graph TB
+Throwable--&gt;Exception
+Throwable--&gt;Error
+Exception--&gt;RuntimeException
+Exception--&gt;ParseException
+
+  
+  Throwable
+    
+      Error: 错误，一般不要去掩盖，让其充分暴露，然后才能找到出错的地方加以修正
+      Exception: 异常，可以做一些捕获
+        
+          RuntimeException: 运行时异常，编译的时候能通过，运行的时候报出了异常，此种异常通常是由用户的操作而造成的，很多时候不可避免
+            
+              运行时异常的处理方式：
+                
+                  不处理
+                  使用try catch结构，为了让后面的程序可以继续运行
+                
+              
+            
+          
+          ParseException: 编译期异常，无法通过编译的异常，是为了提示开发者，请开发者注意一下这个地方可能会出错
+            
+              编译期异常的处理方式
+                
+                  同样可以使用try catch结构，检查以后发现这个错误是不可预期的，这个时候就可以用try catch结构，保证后面的程序可以继续运行
+                  使用throws语句，检查之后发现程序完全没有问题，为了通过编译，就使用throws将异常抛出以通过运行
+                
+              
+            
+          
+        
+      
+    
+  
+
+
+
+
+JVM处理异常的方式和try catch处理异常
+
+  JVM默认的处理异常的方式
+    
+      将异常的位置、信息、原因输出到控制台，然后直接终止程序
+    
+  
+  try catch处理异常
+    
+      格式：
+          try {
+  可能会出现异常的语句体;
+  } catch (异常类型 变量名) {
+  发现异常后执行的语句体;
+  }
+        
+      
+      经过try catch处理的代码，如果try里的代码出现了异常，try catch后面的代码还是会继续执行
+    
+  
+
+
+
+如何处理多个异常
+
+  使用多个catch，每一个catch中写一种异常
+  使用一个catch，放多种异常，但每个异常之间需要用或”|“隔开
+
+
+
+Throwable的常用方法
+String getMessage()         //返回此throwable的详细消息字符串
+String toString()           //返回此throwable的简短描述
+void printStackTrace()      //打印异常的堆栈的跟踪信息
+
+
+
+自定义异常
+
+  根据实际中不同的需求，去额外的再去定义一些异常
+    
+      根据需要的异常的类型，去选择异常的父类，再继承就好了
+```java
+class AgeOutOfBoundsException extends RuntimeException{
+  public AgeOutOfBoundsException(){
+    
+
+    }
+  public AgeOutOfBoundsException(String messege){
+      super(messege);
+  }
+}
+```
+—
+    finally的概述和应用场景
+  
+  finally是一个关键字，和try catch一起使用，最终肯定会被执行
+  用于做一些程序的收尾工作(例如流的关闭)
+  注意事项：
+    
+      如果catch里有return语句，finally中的代码仍然会被执行，而且是在return执行时执行
+        
+          return执行时会先将语句进入内存中，此时执行finally中的语句，在执行完finally的语句之后，如果程序还没有结束(finally中可能有return语句)，则执行事先存入内存中的return语句
+        
+      
+    
+  
+
+
+
+一些关键词的区别
+
+  final finally finalize的区别
+    
+      final
+        
+          是一个修饰符
+            
+              修饰的变量时常量
+              修饰的方法不能被重写
+              修饰的类不能被继承
+            
+          
+        
+      
+      finally
+        
+          是一个关键字，和try catch一起使用，最终肯定会被执行
+        
+      
+      finalize
+        
+          是一个方法名，是Object的一个方法，当垃圾回收器回收一个对象的时候，就会自动去执行这个对象的finalize方法
+        
+      
+    
+  
+
+
+
+</span>
+	                    </li>
+	                </div>
+					
+		            <div class="post-item">
+	                    <h2>
+	                        <a class="post-link" href="/2019/08/02/Basis.html"> Java基础 </a>
+	                    </h2>
+	                    <li><span class="post-meta">Aug 2, 2019</span>
+	                    </li>
+	                    <li>
+	                        <span class="post-excerpt">基础语法回顾
+
+  数据类型
+    
+      基本数据类型
+        
+          整型
+            
+              byte short int long
+            
+          
+          浮点型
+            
+              float double
+            
+          
+          字符型
+            
+              char
+            
+          
+          布尔型
+            
+              boolean
+            
+          
+        
+      
+      引用数据类型
+        
+          （主要为）对象
+        
+      
+    
+  
+
+
+
+
+方法的回顾
+
+  方法的定义
+
+
+    修饰符 返回值类型 方法名(参数类型 参数1, 参数类型 参数2……){
+        方法体;
+    }
+
+
+
+  方法的调用
+    
+      直接调用
+      赋值调用
+      
+        输出调用
+      
+    
+  
+
+
+数组的回顾
+
+  数组的特点
+    
+      1.长度固定，一经定义无法更改
+      2.数组内的元素都是同一种数据类型
+    
+  
+  数组的定义&amp;初始化
+
+
+    变量类型[] 数组名 = new 变量类型[数组长度];                    //动态初始化
+    变量类型[] 数组名 = new 变量类型[]{变量1,变量2,变量3……}        //静态初始化
+    变量类型[] 数组名 = {变量1,变量2,变量3……}                      //静态初始化的简写形式
+
+
+
+
+定义标准的对象示例
+
+public class Student{
+    private String name;
+    private int age;                        //定义属性变量并私有化
+
+    public Student(){}                      //空参构造
+
+    public Student(String name,int age){    //满参构造
+        this.name = name;
+        this.age = age;
+    }
+
+    public void setName(String name){
+        this.name = name;
+    }
+
+    public String getName(){
+        return name;
+    }
+
+    public void setAge(int age){
+        this.age = age;
+    }
+
+    public int getAge(){                    //提供私有化变量的get、set方法
+        return age;
+    }
+}
+
+
+静态的概述和特点
+
+  静态的概述
+    
+      由static修饰符修饰
+    
+  
+  静态的特点
+    
+      被其所在的类下的所有对象共用
+      随类的引用而出现，随类的消失而消失（生命周期与类相同）
+      
+        不能访问非静态成员
+        静态的注意事项
+      
+    
+  
+  静态成员只能访问静态成员
+  
+    非静态成员可以访问静态成员，也可以访问非静态成员
+  
+
+
+静态的优缺点以及应用场景
+
+  优点
+    
+      调用时不需要创建对象，节约内存
+    
+  
+  缺点
+    
+      
+        访问受到限制（只能访问静态成员）
+      
+    
+  
+
+
+自定义工具类
+
+  
+    利用了修饰符static的特点，调用此类中的方法不需要创建该类的对象。
+  
+
+
+代码块的概述
+
+  局部代码块
+    
+      位于语句体中，用于缩短变量的生命周期，以节约内存。
+    
+  
+  构造代码块
+    
+      位于类中，每次创建该类的对象时都执行一次此代码块的内容
+    
+  
+  静态代码块
+    
+      位于类中，当该类被引用时执行一次。由static修饰符修饰，与类的静态成员类似。
+    
+  
+  同步代码块
+    
+      
+        （多线程）
+      
+    
+  
+
+
+代码块的可能面试题
+
+  定义一个BlockTest类:
+  在该类中定义静态代码块,在静态代码块中输出”BlockTest静态代码块被执行”
+  在该类中定义构造代码块,在构造代码块中输出”BlockTest构造代码块被执行”
+  在该类中定义无参构造,在无参构造中
+  输出”BlockTest无参构造执行”
+  定义一个Coder类
+  该类中定义的内容与BlockTest完全相同
+  在BlockTest中定义main方法,创建Coder()对象,测试程序执行结果
+
+</span>
+	                    </li>
+	                </div>
+					
+		            <div class="post-item">
+	                    <h2>
+	                        <a class="post-link" href="/2018/09/04/Extends.html"> 继承&抽象 </a>
+	                    </h2>
+	                    <li><span class="post-meta">Sep 4, 2018</span>
+	                    </li>
+	                    <li>
+	                        <span class="post-excerpt">继承的概述
+
+  多个类中的共性内容向上抽取作为父类，从而让其各个子类共享
+  关键字：extends
+
+
+
+
+继承的特点
+
+  Java支持单继承，不支持多继承（一个子类只能有一个父类）
+  Java支持多层继承（一个父类可以有多个子类）
+
+
+
+
+继承中成员变量的特点
+
+  就近原则
+    
+      有局部变量的先使用局部变量
+      无局部变量优先使用本类变量
+      无局部变量和本类变量再使用父类变量
+    
+  
+  就近原则的实质
+    
+      在方法内部调用变量时，如果没有同名的局部变量会默认加上一个this关键字
+      如果该方法所在的类中没有同名的成员变量就去父类中查找
+      若父类中仍然不存在该变量，就会出错
+    
+  
+  this、super关键字
+
+
+
+
+继承中成员方法的特点
+
+  子类中没有这个方法，调用父类的
+  子类中重写了这个方法，调用子类的
+    
+      方法的重写
+        
+          在子父类当中，方法声明一模一样(方法名和参数列表都相同)，子类的访问权限修饰符大于等于父类的访问权限修饰符，我们称之为方法的重写（覆盖）
+        
+      
+      方法的重载
+        
+          方法名相同，参数列表不同，与返回值无关
+        
+      
+    
+  
+
+
+
+
+方法重写的应用场景和注意事项
+
+  应用场景
+    
+      当父类中的方法无法满足或无法完全满足子类的需求时，就需要对父类的方法进行重写
+    
+  
+  注意事项
+    
+      子类重写父类的方法，访问权限必须大于等于父类的访问权限（权限修饰符）
+      子类重写父类的方法是，仍可以使用super关键字调用父类的方法
+      父类中的私有方法不能被重写（父类私有方法无法被继承）
+    
+  
+
+
+
+
+继承中的构造方法和执行顺序
+
+  在有子父类继承关系的类中，创建子类的对象调用子类的构成方法
+  如果子类构造方法的第一行代码没有调用父类以及本类的构造方法，则会默认调用父类的无参构造
+  可以使用super()在子类的构造方法的第一行调用父类的构造方法
+  可以在子类的构造方法中使用this关键字调用本类的其他构造方法
+  构造子类的对象时必然会先执行父类的构造，因为要给父类的成员变量进行初始化
+
+
+
+
+this和super的区别
+
+  this
+    
+      为当前对象的引用
+    
+  
+  super
+    
+      子类对象的父类引用
+    
+  
+
+
+
+
+继承的优缺点
+
+  优点
+    
+      提高了代码的复用性
+      提高了代码的可维护性
+    
+  
+  缺点
+    
+      代码的耦合性变高
+    
+  
+
+
+
+
+匿名对象的概述和应用场景
+
+  匿名对象
+    
+      没有引用的对象称之为匿名对象
+    
+  
+
+
+Student s =  new Student();         //非匿名对象
+new Student();                      //匿名对象
+
+
+
+  应用场景
+    
+      当方法只调用一次时可以使用匿名对象
+    
+  
+  匿名对象的优点
+    
+      调用完就成为垃圾，等待回收，有利于节省内存
+    
+  
+  匿名对象的注意事项
+    
+      匿名对象可以作为方法的参数进行传递，其本质是在方法进行调用时，将匿名对象赋值给了形式参数
+      匿名对象的参数可以进行赋值，但由于没有对其的引用，赋值完毕之后该对象就成为垃圾无法找到
+      每次使用匿名对象都会在堆内存中创建一个新的对象，所以如果需要多次调用该类的方法不建议使用匿名对象
+    
+  
+
+
+
+
+final的概述和作用
+
+  final修饰符
+    
+      可以修饰类、方法、变量
+      final修饰符修饰的类不能有子类
+      final修饰符修饰的方法不能被重写
+      final修饰符修饰的变量为常量
+    
+  
+  自定义常量必须初始化，可以选择显式初始化或构造初始化
+
+
+final int NUM = 10;                 //显式初始化
+
+public 类名(){
+    NUM = 10;                       //构造初始化
+}
+
+
+
+
+抽象类的概述
+
+  类是用于描述事物的，当我们没有具体的信息来描述该事物，那么这个事物就可以用Java中的抽象来进行表示
+    
+      有抽象方法的类必须是抽象类
+      关键字abstract
+    
+  
+
+
+
+
+抽象类的特点
+
+  抽象类中的方法可以使抽象方法也可以是非抽象方法
+  抽象类中可以没有抽象方法
+  抽象类不能实例化
+  必须被abstract关键字所修饰
+  抽象类与类之间关系是继承关系
+  一个类继承了抽象类要么重写所有的抽象方法要么他自己是抽象类
+
+
+
+
+抽象类的成员特点
+
+  成员变量可以是变量和常量
+  可以有抽象方法和非抽象方法
+  有构造方法为了给成员初始化使用
+
+
+
+
+抽象类的细节
+
+  不能共存的关键字
+    
+      final
+        
+          final关键字修饰的类无法被继承，而abstract修饰的类需要被继承
+          final关键字修饰的方法无法被重写，而abstract修饰的方法必须要重写，否则没有方法体
+        
+      
+      private
+        
+          private关键字修饰的类和方法无法被继承，而abstract修饰的类需要被继承，被其修饰的方法不被继承则无法重写
+        
+      
+      static
+        
+          被static修饰的方法可以通过类名直接调用，而被abstract修饰的方法没有方法体，无法被直接调用
+        
+      
+    
+  
+  抽象类虽然不可实例化，但是其仍然有构造函数
+  抽象类可以无抽象方法，使其无法被创建对象
+
+
+
+
+抽象的思想
+
+  将共性抽取，类似父类，区别在于抽取了只明确了一部分的方法，非抽象子类在继承抽象类时必须要进行抽象方法的重写
+
+
+
+</span>
+	                    </li>
+	                </div>
+					
+		            <div class="post-item">
+	                    <h2>
+	                        <a class="post-link" href="/2018/08/27/Reflection.html"> Java反射机制 </a>
+	                    </h2>
+	                    <li><span class="post-meta">Aug 27, 2018</span>
+	                    </li>
+	                    <li>
+	                        <span class="post-excerpt">反射的概念
+
+  一种动态获取信息和调用对象方法的机制
+  反射是Java中非常重要的一个机制。在运行状态中，对于任意一个类，通过反射机制都能够获得这个类的所有的属性和方法；对于任意一个对象，通过反射机制都能调用他的任意一个方法和属性。
+
+
+反射机制的意义
+
+  利用反射机制，我们可以大大增强程序的灵活性
+  从编程过程中来看，如果说编码是一个程序员向机器输入的过程，那么运用反射机制就相当于是向机器获取的过程。反射的实质是在获取字节码文件中的相关信息。因此，从一定程度上来说，反射机制补全了对于程序流程的控制。
+    
+      目前几乎所有框架的底层实现都利用到了反射机制
+    
+  
+
+
+
+反射机制的概述和字节码对象的获取方式
+
+  通过对象的getClass方法来获取
+      Student s = new Student();
+  Class c = s.getClass();             //需要有一个该类的对象
+    
+  
+  通过类名调用class()方法来获取
+      Class c = Student.getClass();       //需要知道该类的类名
+    
+  
+  通过Class类的forName静态方法来获取
+      Class c = Class.forName("全类名");  //只需要知道该类的全类名即可
+    
+  
+
+
+
+通过反射获取构造方法并使用
+
+  当获取某一个类的字节码对象之后，即可通过反射获取其构造方法,方法如下
+    Constructor[] getConstructors();       //获取该类的所有非私有的构造方法，返回Constructor数组
+Constructor&lt;?&gt; getConstructor();       //获取该类的非私有构造方法，返回一个Constructor对象
+    
+  
+  获取了构造方法之后，可使用Constructor对象的newInstance来创建该类的对象
+    Object newInstance();         //利用Constructor对象创建新对象
+    
+  
+
+
+
+通过反射获取成员变量并使用
+
+  利用Class对象的getFields()方法来获取成员变量的地址，此方法返回的是一个Field对象
+      Field[] getFields();                            //获取对象的所有公有成员变量
+  Field[] getDeclaredFields();                    //获取对象的所有成员变量
+  Field getField(String fieldName);               //获取变量名为fieldName的非私有成员变量
+  Field getDeclaredField(String fieldName);       //获取变量名为fieldName的成员变量
+    
+    
+      此处注意，Field对象接收到的，只是对应的字段在目标对象中的存储地址，并非获取到了对象字段的具体值
+    
+  
+  获取指定对象的具体成员变量的值
+      field.get(newInstance);         //返回newInstance对象的field字段所对应的值
+    
+  
+  修改指定对象的具体成员变量的值
+      field.set(newInstance,value);               //将newInstance对象的field字段所对应的值修改为value
+    
+    
+      注意，使用此方法修改成员变量时，这个变量必须为公共的，如果是非公有成员变量，可以使用Field的setAccessible()方法将其设为可修改
+          boolean isAccessible();                     //判断这个字段的值设置时是否有Java语言访问检查
+  void setAccessible(boolean flag);           //将此对象的accessible标志设置为指定的值，为true则取消在修改时的Java语言访问检查
+        
+      
+    
+  
+
+
+
+通过反射获取成员方法并使用
+
+  调用Class类的方法来获取成员方法
+    Method getMethod(String methodName, Class&lt;?&gt;... parameterTypes);            //获取方法名为methodName的非私有成员方法
+Method getDeclaredMethod(String methodName, Class&lt;?&gt;... parameterTypes);    //获取方法名为methodName的成员方法
+Method[] getMethods();                                                      //获取该类的所有非私有方法
+Method[] getDeclaredMethods();                                              //获取该类的所有成员方法，但不包括继承的方法
+    
+    
+
+    
+  
+  调用Method类的方法来使用成员方法
+    Object invoke(Object obj,Object... args);       //对带有指定参数的指定对象调用由此Method对象所表示的底层方法
+    
+  
+
+
+
+</span>
+	                    </li>
+	                </div>
+					
+		            <div class="post-item">
+	                    <h2>
+	                        <a class="post-link" href="/2018/08/26/Annotation.html"> 注解 </a>
+	                    </h2>
+	                    <li><span class="post-meta">Aug 26, 2018</span>
+	                    </li>
+	                    <li>
+	                        <span class="post-excerpt">注解的概念
+
+  概念
+    
+      给编译器或者虚拟机看的一个标识
+    
+  
+  作用
+    
+      规范代码的编写
+      携带一些数据
+    
+  
+
+
+
+注解的属性
+
+  属性
+    
+      注解可以携带一些属性，使得被其标识的方法(变量或类)具有其他不同的功能
+      注解支持的属性类型为:基本数据类型、字符串类型、注解类型、枚举类型、以及以上类型的一位数组
+    
+  
+  使用方法
+    
+      在注解时给其携带的属性赋值
+          @Anno_name(属性名1=属性值1,属性名2=属性值2...)
+        
+      
+      属性的定义
+          @interface Anno_name{
+  属性类型 属性名() 属性的默认值;
+  属性类型 属性名2();
+  }
+        
+      
+    
+  
+  注意事项
+    
+      使用注解时，不对其携带的属性进行赋值则会自动赋为默认值
+      若属性没有默认值，则必须赋值
+      若只有一个名为value的属性值需要赋值，则”value=”可以省略
+          @Anno_name(value="value")--&gt;@Anno_name("value")
+        
+      
+    
+  
+
+
+
+修饰注解的注解
+
+  要用魔法打败魔法
+
+
+
+  @Retention
+    
+      自定义注解的存在时机
+      属性值:value
+          RetentionPolicy.SOURCE 		//被修饰的注解仅存在于Java形态
+  RetentionPolicy.CLASS 		//被修饰的注解存在到class形态
+  RetentionPolicy.RUNTIME 	//被修饰的注解一直存在到运行时期
+        
+      
+    
+  
+  @Target
+    
+      自定义注解的可修饰对象
+      属性值:value
+          ElementType.TYPE 			//被修饰的注解只能用于修饰类
+  ElementType.METHOD 			//被修饰的注解只能用于修饰方法
+  ElementType.FIELD 			//被修饰的注解只能用于修饰修饰字段
+  ElementType.PARAMETER 		//被修饰的注解只能用于修饰参数
+  //由于value是枚举类型，故可以在此规定其修饰的注解的修饰范围
+        
+      
+    
+  
+
+
+
+注解的使用方法
+
+  核心思想:反射
+    class.getAnnotation(Anno.class)			//获取类上的指定Anno注解,如没有改该注解则返回null
+method.getAnnotation(Anno.class)		//获取方法上的指定Anno注解,如没有改该注解则返回null
+field.getAnnotation(Anno.class)			//获取字段上的指定Anno注解,如没有改该注解则返回null
+parameter.getAnnotation(Anno.class)		//获取参数上的指定Anno注解,如没有改该注解则返回null
+annotation.属性名()						//获取注解携带的属性
+    
+  
+
+
+
+</span>
+	                    </li>
+	                </div>
+					
+				</div>
+			</div>
+			
+        </div>
+
+        <div class="right-bar">
+            <div class="tag-cloud">
+              <a href="/tag/java.html" class="set-5">Java</a> <a href="/tag/vue.html" class="set-1">Vue</a> <a href="/tag/web.html" class="set-1">Web</a> <a href="/tag/%E5%B9%B6%E5%8F%91.html" class="set-1">并发</a> <a href="/tag/%E6%95%B0%E6%8D%AE%E5%BA%93.html" class="set-1">数据库</a> <a href="/tag/%E6%9C%AA%E5%88%86%E7%B1%BB.html" class="set-1">未分类</a> <a href="/tag/%E6%A1%86%E6%9E%B6.html" class="set-1">框架</a>
+            </div>
+        </div>
+    </div><footer class="site-footer h-card">
+	<div class="wrapper">
+		<div id="footer-bar">
+			<h2 class="footer-heading">SiteTitle</h2>
+				<div class="friend-link-list"><a class="button" href="https://www.sample.com" target="_blank">友链1</a><a class="button" href="https://www.sample.com" target="_blank">友链2</a></div>
+
+				<div class="footer-desc">
+					<p>description for your site.</p>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+</footer>
+</body>
+</html>

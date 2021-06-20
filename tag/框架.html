@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<link rel="shortcut icon" href="//favicon.ico" type="image/x-icon" />
+<link rel="stylesheet"
+    href="/assets/css/style.css?v=">
+<script
+    src="/assets/scripts/jquery-1.11.2.min.js?v="></script>
+<script
+    src="/assets/scripts/function.js?v="></script>
+</head>
+<body><header role="banner">
+
+	<div class="site-header">
+		<div id="header-bar"><div class="site-title" style="font-size: 3em;margin-bottom: 20px; margin-top: 20px">
+					<a rel="author" href=/ class="button">SiteTitle</a>
+			</div><div class="site-nav" style="margin-bottom: 20px;"><a class="page-link button" href="/about.html">
+							    About
+							</a></div></div>
+	</div>
+</header>
+<div class="container"><div class="left-bar">
+	<div id="self-info"
+		style="display: flex; flex-direction: column; margin-top: 100px; padding: 10px; border-radius: 4px;">
+		<div id="my-logo"
+			style="display: flex; flex-direction: column; align-items: center">
+			<img src="//assets/images/logo.png" />
+		</div>
+		<div style="padding: 30px 20px 0px 20px">
+			<div style="font-size: 25px; font-weight: bold;">your nick name</div>
+			<div style="font-size: 20px; font-weight: 300;">your nick name vcard.</div>
+		</div>
+		<div style="padding: 30px 20px 0px 20px">
+		<div>your signature.</div>
+		<div style="font-size: 15px; margin-top:20px">
+			<span style="margin-top: 3px"> <svg viewBox="0 -5 20 20"
+					version="1.1" width="16" height="16" aria-hidden="true">
+					<path fill-rule="evenodd"
+						d="M1.75 2A1.75 1.75 0 000 3.75v.736a.75.75 0 000 .027v7.737C0 13.216.784 14 1.75 14h12.5A1.75 1.75 0 0016 12.25v-8.5A1.75 1.75 0 0014.25 2H1.75zM14.5 4.07v-.32a.25.25 0 00-.25-.25H1.75a.25.25 0 00-.25.25v.32L8 7.88l6.5-3.81zm-13 1.74v6.441c0 .138.112.25.25.25h12.5a.25.25 0 00.25-.25V5.809L8.38 9.397a.75.75 0 01-.76 0L1.5 5.809z"></path></svg>
+			</span>
+			<a href="mailto:your email address">your email address</a></div>
+		</div>
+	</div>
+</div>
+<div class="content">
+	        <div class="post-list-view">
+		        <div class="post-list">
+		            <h2>框架标签下的文章：</h2>
+		            
+		            <div class="post-item">
+	                    <h2>
+	                        <a class="post-link" href="/2018/08/28/Mybatis.html"> Mybatis框架 </a>
+	                    </h2>
+	                    <li><span class="post-meta">Aug 28, 2018</span>
+	                    </li>
+	                    <li>
+	                        <span class="post-excerpt">Mybatis简介
+
+  Mybatis是一个持久层框架。
+  支持定制化SQL、存储过程以及高级映射
+
+
+
+为什么使用Mybatis
+
+  与Hibernate的区别
+    
+      Mybatis相比较与Hibernate更加简单易学
+      Mybatis没有任何第三方依赖，最简单的安装只需要两个Jar文件
+      Mybatis的使用不会对应用程序或数据库的现有设计有任何影响，灵活性强
+      SQL语句写在XML文件里，解除了SQL语程序代码的耦合，通过提供DAO层将业务逻辑与数据访问逻辑分离，程序可维护性高
+      支持动态编写SQL
+    
+  
+
+
+
+运行流程(框架架构)
+
+  加载配置
+  SQL解析
+  SQL执行
+  结果映射
+
+
+
+涉及Jar包
+
+  核心包
+    
+      mybatis-x.x.x.jar
+      Maven坐标
+          &lt;dependency&gt;
+      &lt;groupId&gt;org.mybatis&lt;/groupId&gt;
+      &lt;artifactId&gt;mybatis&lt;/artifactId&gt;
+      &lt;version&gt;3.4.6&lt;/version&gt;
+  &lt;/dependency&gt;
+        
+      
+    
+  
+  数据库驱动包
+    
+      mysql-connector-java-x.x.x-bin.jar
+      Maven坐标
+          &lt;dependency&gt;
+      &lt;groupId&gt;mysql&lt;/groupId&gt;
+      &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
+      &lt;version&gt;5.0.7&lt;/version&gt;
+  &lt;/dependency&gt;
+        
+      
+    
+  
+
+
+
+具体使用以及配置
+
+  查询
+    
+      加载配置
+        
+          配置文件结构
+            
+              依赖
+                  &lt;!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd"&gt;
+                
+              
+              具体SqlMapConfig配置
+                  &lt;configuration&gt;
+  &lt;!-- 配置环境，设置使用的连接以及所使用的数据库，可以配置多个环境 --&gt;
+      &lt;environments default="development"&gt;
+          &lt;environment id="development"&gt;
+              &lt;transactionManager type="JDBC" /&gt;
+              &lt;dataSource type="POOLED"&gt;
+              &lt;!-- 驱动、连接地址、用户名、密码的配置--&gt;
+                  &lt;property name="driver" value="com.mysql.jdbc.Driver" /&gt;
+                  &lt;property name="url" value="${jdbc.url}" /&gt;
+                  &lt;property name="username" value="${jdbc.username}" /&gt;
+                  &lt;property name="password" value="${jdbc.password}" /&gt;
+              &lt;/dataSource&gt;
+          &lt;/environment&gt;
+      &lt;/environments&gt;
+      &lt;!-- 配置映射，可以通过resource直接调用其他mapper文件 --&gt;
+      &lt;mappers&gt;
+          &lt;mapper resource="Map.xml"/&gt;
+          &lt;mapper namespace=""&gt;
+              &lt;select id="findAllUser" resultType="packagename.User"&gt;
+                  select * from user
+              &lt;/select&gt;
+          &lt;/mapper&gt;
+      &lt;/mappers&gt;
+  &lt;/configuration&gt;
+                
+                
+                  注意，使用驱动不同时，property的name可能也会不同
+                
+
+                
+                  Map.xml文件配置
+                    
+                      主要结构就是一个mapper标签，namespace作为文件的标识
+                      mapper标签中，可以配置想要的语句，程序利用mapper的namespace+语句的id去定位要使用的SQL语句
+                    
+                  
+                
+              
+            
+          
+          将配置文件加载
+            
+              主要是为了开启SQLSession以执行对数据库的操作
+                  //加载资源
+  InputStream inputStream = Reasources.getResourceAsStream("SqlMapConfig.xml");	//具体路径视情况修改
+  //创建SqlSessionFactory对象
+  SqlSessionFactory ssf = new SqlSessionFactoryBuilder().build(inputStream);
+  //由SqlSessionFactory对象开启SqlSession
+  SqlSession ss = ssf.openSession();
+                
+              
+            
+          
+        
+      
+      调用方法进行查询
+         ss.selectOne("语句");
+ //此处的语句为在Map.xml配置文件中配置的namespace+id，即可以执行对应标签中的SQL语句
+        
+        
+          常用的查询方法
+             Object selectOne("语句");		//查询一条数据，其类型为在Map.xml文件中定义的resultType
+ List selectList("语句");			//查询多条数据
+            
+          
+        
+      
+      结果输出
+      资源回收
+          ss.close();
+        
+      
+    
+  
+  增加记录
+    
+      Map.xml的标签为
+      调用SqlSession的insert方法
+          sqlSession.insert("语句",Object);		
+  //Object为要插入的pojo类，此时的Pojo类可以视为一个参数列表
+        
+      
+    
+  
+  删除记录
+    
+      Map.xml的标签为
+      调用SqlSession的delete方法
+          sqlSession.delete("语句",Object);		
+  //Object为要删除的pojo类，此时的Pojo类依然视为一个参数列表
+        
+      
+    
+  
+  修改记录
+    
+      Map.xml的标签为
+      调用SqlSession的update方法
+          sqlSession.update("语句",Object);		
+  //Object为要修改的pojo类，此时的Pojo类依然视为一个参数列表
+        
+      
+    
+  
+
+
+
+动态SQL
+
+  传递参数
+    
+      主要意义
+        
+          实现了程序对SQL语句的控制
+        
+      
+      ${}与#{}的区别
+        
+          #{}可以实现参数的输入，即Java与jdbc的类型转换，可以防止SQL注入
+          ${}只能起到字符串拼接的作用，而且括号中只能是value，无法防止SQL的注入问题
+        
+      
+    
+  
+  动态SQL
+    
+      Mybatis支持动态的标签输入
+      if
+        
+          if标签中test即为判断条件，条件为真则输出if标签内的语句
+          需要做多条件判断时连接符为and而不是&amp;&amp;
+              select * from tableName 
+  where 1=1 
+  &lt;if test="id!=null"&gt;
+      and id=#{id}
+  &lt;/if&gt;
+            
+          
+        
+      
+      where
+        
+          where标签可以处理第一个and
+              select * from tableName 
+  &lt;where&gt;
+      &lt;if test="id!=null and id!=''"&gt;
+          and id=#{id}
+      &lt;/if&gt;
+      &lt;if test="username!=null and username!=''"&gt;
+          and username like '%${username}%'
+      &lt;/if&gt;
+  &lt;/where&gt;
+            
+          
+        
+      
+      foreach
+        
+          collection为迭代的集合
+          item为迭代变量
+          separator为变量之间的分隔符
+          open描述输出位置
+              &lt;foreach collection="ids" open=" and id in(" close=")" item="id" separator="," &gt;
+      #{id}
+  &lt;/foreach&gt;
+            
+          
+        
+      
+      sql片段
+        
+          实现SQL语句的封装，以供调用
+          其他部分调用封装的SQL语句时使用include标签，在refid中填入SQL标签的id即可
+              &lt;include refid="SqlId"/&gt;
+            
+          
+        
+      
+    
+  
+
+
+
+与Spring整合相关
+
+  主要思路
+    
+      让Spring管理SqlSessionFactory对象，使其在整个应用中作为单例存在
+      SqlSession对象可以从Spring容器中获取，简化操作
+      Mapper代理中，可以从Spring容器中获取Mapper的代理对象
+      数据库的连接以及数据库连接池事务管理都交由Spring管理，MyBatis只做数据库操作
+        
+          单独使用mybatis是有很多限制的，比如无法实现跨越多个session的事务，而且很多业务系统本来就是使用spring来管理的事务，因此mybatis最好与spring集成起来使用
+        
+      
+    
+  
+
+</span>
+	                    </li>
+	                </div>
+					
+				</div>
+			</div>
+			
+        </div>
+
+        <div class="right-bar">
+            <div class="tag-cloud">
+              <a href="/tag/java.html" class="set-5">Java</a> <a href="/tag/vue.html" class="set-1">Vue</a> <a href="/tag/web.html" class="set-1">Web</a> <a href="/tag/%E5%B9%B6%E5%8F%91.html" class="set-1">并发</a> <a href="/tag/%E6%95%B0%E6%8D%AE%E5%BA%93.html" class="set-1">数据库</a> <a href="/tag/%E6%9C%AA%E5%88%86%E7%B1%BB.html" class="set-1">未分类</a> <a href="/tag/%E6%A1%86%E6%9E%B6.html" class="set-1">框架</a>
+            </div>
+        </div>
+    </div><footer class="site-footer h-card">
+	<div class="wrapper">
+		<div id="footer-bar">
+			<h2 class="footer-heading">SiteTitle</h2>
+				<div class="friend-link-list"><a class="button" href="https://www.sample.com" target="_blank">友链1</a><a class="button" href="https://www.sample.com" target="_blank">友链2</a></div>
+
+				<div class="footer-desc">
+					<p>description for your site.</p>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+</footer>
+</body>
+</html>
