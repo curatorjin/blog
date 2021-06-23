@@ -6,9 +6,11 @@ nick_name: 阿金
 nick_name_vcard: curatorjin
 email: disciple_sneaker@163.com
 baseurl: "/blog"
-gems: [jekyll-feed, jekyll-seo-tag, jekyll-paginate, jekyll-tagging]
+gems: [jekyll-feed, jekyll-seo-tag, jekyll-paginate]
 paginate: 7
 paginate_path: "/page:num/"
 friends:
     - name: Neei的笔记库
       link: https://www.yuque.com/aaneeini?tab=books    
+    - name: 叶子的博客
+      link: http://leafw.cn/
