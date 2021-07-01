@@ -58,12 +58,12 @@ tags:  编程思维
 
 
 ### 参考资料
-[面向对象已死，OOP永存](https://www.gamedev.net/blogs/entry/2265481-oop-is-dead-long-live-oop/)
-[面向对象就是一个错误](https://blog.csdn.net/weixin_42232219/article/details/113764592)
-[什么是面向对象编程思想](https://www.zhihu.com/question/31021366)
+- [面向对象已死，OOP永存](https://www.gamedev.net/blogs/entry/2265481-oop-is-dead-long-live-oop/)
+- [面向对象就是一个错误](https://blog.csdn.net/weixin_42232219/article/details/113764592)
+- [什么是面向对象编程思想](https://www.zhihu.com/question/31021366)
 
 ### 引申链接
 > 使用面向对象时的一些规范
 
-[SOILD编程规范](https://www.jianshu.com/p/1c6498da3862)
-[数据库规范化理论](https://zhuanlan.zhihu.com/p/344351869)
+- [SOILD编程规范](https://www.jianshu.com/p/1c6498da3862)
+- [数据库规范化理论](https://zhuanlan.zhihu.com/p/344351869)
