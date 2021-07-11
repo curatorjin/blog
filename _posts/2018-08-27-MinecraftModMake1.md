@@ -2,7 +2,7 @@
 layout: post
 title:  "基于FML的MinecraftMod制作学习笔记——开发环境的配置"
 date:   2018-8-27 11:05:44 +0800
-tags: 未分类
+tags: Minecraft
 ---
 # 首先……
 - 以下为个人学习Minecraft1.7.10Mod开发时的流程和一些心得，其中涉及到了一些Java的知识，在此与大家分享
