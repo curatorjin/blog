@@ -68,7 +68,6 @@ public class Demo {
 ### 参考资料
 
 - [Java应用架构设计](https://book.douban.com/subject/25770095/)
-
 - [为了拿下 Offer，我在技术面试时迎合面试官，给了错误答案！](https://mp.weixin.qq.com/s/CEh8oin9JwstKg1eMFAOug)
 - [一文教会你如何写复杂业务代码](https://juejin.cn/post/6887766374082019336?utm_source=gold_browser_extension)
 
