@@ -2,6 +2,8 @@ title: 阿金的博客
 remote_theme: curatorjin/Furendo
 description: _(:з」∠)_
 signature: 早起赶画稿，熬夜写项目
+plugins:
+    - jekyll-feed
 nick_name: 阿金
 nick_name_vcard: curatorjin
 email: disciple_sneaker@163.com
