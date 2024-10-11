@@ -2,6 +2,7 @@
 layout: post
 title:  "从Spring三级缓存看循环依赖"
 date:   2024-9-26 22:22:00 +0800
+excerpt_separator: <!--more-->
 tags: [Spring, 框架, 编程思维]
 ---
 
@@ -17,6 +18,7 @@ tags: [Spring, 框架, 编程思维]
 
 这篇文章并不想谈及具体的编程场景，只是想重点关注这种有趣的逻辑现象以及Spring框架对于此种场景的处理方式。
 
+<!--more-->
 
 
 ## 循环依赖的“毁灭性”
