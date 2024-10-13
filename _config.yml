@@ -1,7 +1,7 @@
 title: 阿金的博客
 name: 阿金的博客
 remote_theme: curatorjin/Furendo
-description: _(:з」∠)_
+description: 并不专业的技术漫谈，Why so serious?
 signature: 早起赶画稿，熬夜写项目
 plugins:
     - jekyll-feed
@@ -12,9 +12,7 @@ baseurl: "/blog"
 gems: [jekyll-feed, jekyll-seo-tag, jekyll-paginate]
 paginate: 7
 paginate_path: "/page:num/"
-friends:
-    - name: Neei的笔记库
-      link: https://www.yuque.com/aaneeini?tab=books    
+friends:   
     - name: 叶子的博客
       link: http://leafw.cn/
     - name: 柚子的夏天

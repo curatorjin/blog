@@ -20,7 +20,7 @@ categories: Java
 		<th>现居住地</th>
 		<td colspan="2">杭州</td>
 		<th>工作年限</th>
-		<td colspan="2">4年</td>
+		<td colspan="2">6年</td>
 	</tr>
 	<tr>
 		<th>电话</th>
